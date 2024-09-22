@@ -1,10 +1,18 @@
+import Create from './components/Form/Create';
+import Detail from './components/Form/Detail';
 import MapWithPath from './components/MapWithPath';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-     <MapWithPath/>
-    </div>
+    <BrowserRouter>
+        <Routes>
+          <Route path='/' element={ <MapWithPath/>}/>
+          <Route path='/list' element={ <Create/>}/>
+          <Route path= 'list/:id' element={ <Detail/>}/>
+
+        </Routes>
+    </BrowserRouter>
   );
 }
 

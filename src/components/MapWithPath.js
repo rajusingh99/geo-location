@@ -3,12 +3,12 @@ import { GoogleMap, LoadScript } from "@react-google-maps/api";
 import data, { google_maps_key } from "../constant";
 import Marker from "./Marker";
 import PolyLineDraw from "./PolyLine";
+import { useNavigate } from "react-router-dom";
 
 const MapWithPath = () => {
   const [markers, setMarkers] = useState([]);
   const [pathCoordinates, setPathCoordinates] = useState([]);
-  console.log(pathCoordinates, "markers");
-
+  const navigate = useNavigate()
   useEffect(() => {
     const coordinates = data
       .flatMap((item) =>
@@ -26,7 +26,7 @@ const MapWithPath = () => {
   }, []);
 
   const mapContainerStyle = {
-    height: "620px",
+    height: "600px",
     width: "100%",
   };
 
@@ -41,6 +41,19 @@ const MapWithPath = () => {
     strokeWeight: 2,
   };
 
+  const handleBlog =()=>{
+    navigate('/list')
+  }
+
+  const styles = {
+    display:"flex",
+    alignSelf:'center',
+    justifyContent:"center",
+    cursor:"pointer",
+    marginLeft:'50%',
+    marginTop:'10px',
+  
+  }
   return (
     <LoadScript googleMapsApiKey={google_maps_key}>
       <GoogleMap
@@ -56,6 +69,8 @@ const MapWithPath = () => {
           polylineOptions={polylineOptions}
         />
       </GoogleMap>
+
+      <button onClick={handleBlog} style={styles}>Blogs</button>
     </LoadScript>
   );
 };
